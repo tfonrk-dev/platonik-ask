@@ -5,6 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Platonik Aşk — Söylenmemiş her şeye bir yer</title>
 <meta name="description" content="Platonik aşkını test et, adını koy; ona hiç göndermeyeceğin ya da göndereceğin mektubu, itirafı, sertifikayı oluştur." />
+<link rel="canonical" href="https://platonikask.com/" />
+<meta name="theme-color" content="#8E2B43" />
+<meta name="author" content="Platonik Aşk" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph (Facebook, WhatsApp, Instagram, LinkedIn) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Platonik Aşk" />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:url" content="https://platonikask.com/" />
+<meta property="og:title" content="Platonik Aşk — Söylenmemiş her şeye bir yer" />
+<meta property="og:description" content="Platonik aşkının adını koy. Testi çöz, mektubunu yaz, mühürle ve sakla — kimseyi etiketlemeden." />
+<meta property="og:image" content="https://platonikask.com/og.png" />
+<meta property="og:image:secure_url" content="https://platonikask.com/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Platonik Aşk — Kalbinde kalan o kişi için bir satır." />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Platonik Aşk — Söylenmemiş her şeye bir yer" />
+<meta name="twitter:description" content="Platonik aşkının adını koy. Testi çöz, mektubunu yaz, mühürle ve sakla — kimseyi etiketlemeden." />
+<meta name="twitter:image" content="https://platonikask.com/og.png" />
+<meta name="twitter:image:alt" content="Platonik Aşk — Kalbinde kalan o kişi için bir satır." />
+
+<!-- Favicon (mum mühürlü P) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; viewBox=&apos;0 0 64 64&apos;%3E%3Ccircle cx=&apos;32&apos; cy=&apos;32&apos; r=&apos;32&apos; fill=&apos;%238E2B43&apos;/%3E%3Ccircle cx=&apos;32&apos; cy=&apos;32&apos; r=&apos;25&apos; fill=&apos;none&apos; stroke=&apos;%23D8B296&apos; stroke-width=&apos;2&apos;/%3E%3Ctext x=&apos;32&apos; y=&apos;44&apos; font-family=&apos;Georgia,serif&apos; font-size=&apos;32&apos; fill=&apos;%23FAF2EF&apos; text-anchor=&apos;middle&apos;%3EP%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="https://platonikask.com/og.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -189,6 +219,12 @@
 
   footer{border-top:1px solid var(--paper-edge);padding:34px 0;text-align:center;color:var(--ink-soft);font-size:14px}
   footer .brand{justify-content:center;margin-bottom:10px}
+  .share-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0 4px}
+  .share-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--paper-edge);background:var(--paper);color:var(--ink);border-radius:999px;padding:10px 18px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
+  .share-btn:hover{background:var(--paper-deep);transform:translateY(-2px)}
+  .share-btn.solid{background:var(--garnet-deep);border-color:var(--garnet-deep);color:var(--paper)}
+  .share-btn.solid:hover{background:var(--garnet)}
+  .share-note{font-size:13px;color:var(--ink-soft);margin-top:16px;opacity:.8}
   .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;z-index:90;opacity:0;transition:.3s;pointer-events:none}
   .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
@@ -374,6 +410,13 @@
   <div class="wrap">
     <div class="brand"><span class="seal-mini">P</span>platonik aşk</div>
     <div>Söylenmemiş her şeye bir yer · platonikask.com</div>
+    <div class="share-row">
+      <button class="share-btn solid" onclick="sharePage()">Paylaş</button>
+      <button class="share-btn" onclick="shareWhatsApp()">WhatsApp</button>
+      <button class="share-btn" onclick="shareX()">X</button>
+      <button class="share-btn" onclick="copyLink()">Linki kopyala</button>
+    </div>
+    <div class="share-note">Birinin bunu görmesi gerekiyorsa, sessizce gönder.</div>
   </div>
 </footer>
 
@@ -388,6 +431,36 @@ function go(v){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+
+/* ---------------- SHARE ---------------- */
+const SHARE_URL = "https://platonikask.com/";
+const SHARE_TEXT = "Kalbinde kalan o kişi için bir satır. Platonik aşkının adını koy:";
+async function sharePage(){
+  if(navigator.share){
+    try{ await navigator.share({title:"Platonik Aşk", text:SHARE_TEXT, url:SHARE_URL}); return; }
+    catch(e){ if(e && e.name==='AbortError') return; }
+  }
+  copyLink();
+}
+function shareWhatsApp(){
+  window.open("https://wa.me/?text="+encodeURIComponent(SHARE_TEXT+" "+SHARE_URL),"_blank","noopener");
+}
+function shareX(){
+  window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(SHARE_TEXT)+"&url="+encodeURIComponent(SHARE_URL),"_blank","noopener");
+}
+function copyLink(){
+  const done=()=>toast('Link kopyalandı ✓');
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(SHARE_URL).then(done).catch(fallbackCopy);
+  } else { fallbackCopy(); }
+  function fallbackCopy(){
+    const ta=document.createElement('textarea');
+    ta.value=SHARE_URL; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){ toast('Kopyalanamadı'); }
+    document.body.removeChild(ta);
+  }
+}
 
 function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('on');setTimeout(()=>el.classList.remove('on'),2600);}
 
