@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Platonik Aşk — Söylenmemiş her şeye bir yer</title>
+<meta name="description" content="Platonik aşkını test et, adını koy; ona hiç göndermeyeceğin ya da göndereceğin mektubu, itirafı, sertifikayı oluştur." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{
+    --paper:#FAF2EF;
+    --paper-deep:#F2E2DC;
+    --paper-edge:#E7D0C8;
+    --ink:#34202E;
+    --ink-soft:#6E5060;
+    --garnet:#A63B54;
+    --garnet-deep:#8E2B43;
+    --gold:#BE9A57;
+    --seal:#8E2B43;
+    --ok:#3E7C63;
+    --shadow:rgba(52,32,46,.16);
+    --r:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Nunito",system-ui,sans-serif;font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 15% 10%, #fff6f2 0%, transparent 40%),radial-gradient(circle at 85% 90%, #f7e6df 0%, transparent 45%);
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:600;line-height:1.08;letter-spacing:.01em;margin:0}
+  a{color:inherit}
+  button{font-family:inherit;cursor:pointer}
+  .fade{opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  .fade.d1{animation-delay:.1s}.fade.d2{animation-delay:.22s}.fade.d3{animation-delay:.34s}.fade.d4{animation-delay:.46s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.fade{animation:none;opacity:1;transform:none}}
+
+  /* ---- top nav ---- */
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(250,242,239,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--paper-edge)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:600;letter-spacing:.02em}
+  .seal-mini{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b1465f,var(--seal));color:#fbe9ec;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:14px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.18),0 2px 6px rgba(142,43,67,.4)}
+  .nav-links{display:flex;gap:6px;align-items:center}
+  .nav-links button{background:none;border:none;color:var(--ink-soft);font-size:15px;font-weight:600;padding:9px 14px;border-radius:9px;transition:.2s}
+  .nav-links button:hover{color:var(--ink);background:var(--paper-deep)}
+  .nav-links button.active{color:var(--garnet-deep);background:var(--paper-deep)}
+
+  section.view{display:none;padding:56px 0 90px}
+  section.view.on{display:block}
+
+  /* ---- hero ---- */
+  .hero{text-align:center;padding-top:34px}
+  .eyebrow{font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--garnet);font-weight:700;margin-bottom:22px}
+  .hero h1{font-size:clamp(44px,8vw,86px)}
+  .hero h1 em{font-style:italic;color:var(--garnet-deep)}
+  .lede{max-width:560px;margin:22px auto 0;color:var(--ink-soft);font-size:19px}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .btn{border:none;border-radius:999px;padding:15px 30px;font-size:16px;font-weight:700;transition:.22s;box-shadow:0 6px 18px var(--shadow)}
+  .btn.primary{background:var(--garnet-deep);color:#fdeef1}
+  .btn.primary:hover{background:var(--garnet);transform:translateY(-2px)}
+  .btn.ghost{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1.6px var(--paper-edge)}
+  .btn.ghost:hover{background:var(--paper-deep);transform:translateY(-2px)}
+
+  /* wax seal signature */
+  .seal-big{width:118px;height:118px;margin:52px auto 0;border-radius:50%;
+    background:radial-gradient(circle at 34% 28%,#bb4a63,var(--seal) 70%);
+    display:grid;place-items:center;position:relative;
+    box-shadow:0 12px 30px rgba(142,43,67,.4),inset 0 0 0 3px rgba(255,255,255,.14),inset 0 -8px 20px rgba(90,20,38,.55)}
+  .seal-big::before{content:"";position:absolute;inset:9px;border-radius:50%;border:1.4px dashed rgba(255,255,255,.32)}
+  .seal-big span{font-family:"Cormorant Garamond",serif;color:#fbe4e9;font-size:40px;font-style:italic;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:66px}
+  .step{background:var(--paper);border:1px solid var(--paper-edge);border-radius:var(--r);padding:26px 22px}
+  .step .n{font-family:"Cormorant Garamond",serif;font-size:15px;color:var(--gold);font-weight:600;letter-spacing:.2em;margin-bottom:12px}
+  .step h3{font-size:25px;margin-bottom:8px}
+  .step p{margin:0;color:var(--ink-soft);font-size:15.5px}
+
+  /* two products */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+  .card-lg{background:var(--paper);border:1px solid var(--paper-edge);border-radius:18px;padding:32px;position:relative;overflow:hidden}
+  .card-lg .tag{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--garnet)}
+  .card-lg h2{font-size:34px;margin:10px 0 10px}
+  .card-lg p{color:var(--ink-soft);margin:0 0 20px}
+  .price-pill{display:inline-block;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper-deep);border-radius:999px;padding:6px 13px;margin-bottom:18px}
+
+  @media(max-width:760px){.steps{grid-template-columns:1fr}.duo{grid-template-columns:1fr}}
+
+  /* ---- section heads ---- */
+  .shead{text-align:center;margin-bottom:38px}
+  .shead .eyebrow{margin-bottom:14px}
+  .shead h2{font-size:clamp(34px,6vw,54px)}
+  .shead p{color:var(--ink-soft);max-width:520px;margin:14px auto 0}
+
+  /* ---- TEST ---- */
+  .quiz{max-width:640px;margin:0 auto}
+  .qbar{height:6px;background:var(--paper-deep);border-radius:99px;overflow:hidden;margin-bottom:30px}
+  .qbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--garnet),var(--gold));transition:width .4s}
+  .qcard{background:var(--paper);border:1px solid var(--paper-edge);border-radius:18px;padding:34px}
+  .qnum{font-family:"Cormorant Garamond",serif;color:var(--gold);font-style:italic;font-size:19px;margin-bottom:6px}
+  .qtext{font-family:"Cormorant Garamond",serif;font-size:30px;line-height:1.15;margin-bottom:24px}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{text-align:left;background:var(--paper);border:1.6px solid var(--paper-edge);border-radius:12px;padding:15px 18px;font-size:16px;font-weight:600;color:var(--ink);transition:.18s}
+  .opt:hover{border-color:var(--garnet);background:#fff}
+  /* result */
+  .result{max-width:600px;margin:0 auto;text-align:center}
+  .r-seal{width:96px;height:96px;margin:0 auto 20px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#bb4a63,var(--seal) 70%);display:grid;place-items:center;box-shadow:0 10px 26px rgba(142,43,67,.38),inset 0 0 0 3px rgba(255,255,255,.14)}
+  .r-seal span{font-family:"Cormorant Garamond",serif;color:#fbe4e9;font-size:38px}
+  .r-archetype{font-family:"Cormorant Garamond",serif;font-size:46px;color:var(--garnet-deep);margin:6px 0 4px}
+  .r-line{color:var(--ink-soft);font-size:18px;margin-bottom:8px}
+  .r-score{font-weight:700;color:var(--ink);margin-bottom:26px}
+  .locked{position:relative;background:var(--paper);border:1px dashed var(--paper-edge);border-radius:16px;padding:30px 26px;text-align:left;margin-top:8px}
+  .locked h3{font-size:26px;margin-bottom:10px}
+  .locked ul{margin:0 0 20px;padding-left:20px;color:var(--ink-soft)}
+  .locked li{margin:7px 0}
+  .blurwrap{position:relative}
+  .blurred{filter:blur(6px);user-select:none;pointer-events:none;color:var(--ink-soft)}
+  .lock-badge{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--garnet-deep);background:var(--paper-deep);border-radius:999px;padding:6px 13px;margin-bottom:16px}
+
+  /* ---- OLUŞTUR (generator) ---- */
+  .studio{display:grid;grid-template-columns:390px 1fr;gap:30px;align-items:start}
+  @media(max-width:900px){.studio{grid-template-columns:1fr}}
+  .panel{background:var(--paper);border:1px solid var(--paper-edge);border-radius:16px;padding:24px}
+  .typerow{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+  .typebtn{flex:1;min-width:70px;background:var(--paper);border:1.6px solid var(--paper-edge);border-radius:10px;padding:10px 8px;font-size:14px;font-weight:700;color:var(--ink-soft);transition:.18s}
+  .typebtn.active{border-color:var(--garnet);color:var(--garnet-deep);background:#fff}
+  label.fld{display:block;margin-bottom:16px}
+  label.fld span{display:block;font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:6px;letter-spacing:.02em}
+  input,textarea,select{width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:#fff;border:1.5px solid var(--paper-edge);border-radius:10px;padding:12px 13px;transition:.18s}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--garnet)}
+  textarea{resize:vertical;min-height:96px;line-height:1.5}
+
+  /* live preview letter */
+  .stage{position:relative}
+  .letter{position:relative;background:
+      linear-gradient(#fffaf7,#fdf3ee);
+      border-radius:8px;padding:44px 42px 54px;min-height:440px;
+      box-shadow:0 18px 44px var(--shadow);
+      border:1px solid var(--paper-edge);overflow:hidden}
+  .letter.cert{background:linear-gradient(#fffdf8,#fbf4e6);border:1px solid #e9d9b4}
+  .letter::after{content:"";position:absolute;inset:14px;border:1.2px solid rgba(142,43,67,.18);border-radius:4px;pointer-events:none}
+  .letter.cert::after{border-color:rgba(190,154,87,.4)}
+  .l-date{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--ink-soft);font-size:16px;text-align:right}
+  .l-to{font-family:"Cormorant Garamond",serif;font-size:26px;color:var(--garnet-deep);margin:18px 0 14px}
+  .l-body{font-family:"Caveat",cursive;font-size:25px;line-height:1.45;color:var(--ink);white-space:pre-wrap;min-height:120px}
+  .l-from{font-family:"Caveat",cursive;font-size:26px;color:var(--ink);text-align:right;margin-top:26px}
+  .l-seal{position:absolute;right:34px;bottom:30px;width:66px;height:66px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#bb4a63,var(--seal) 70%);display:grid;place-items:center;box-shadow:0 6px 16px rgba(142,43,67,.4),inset 0 0 0 2px rgba(255,255,255,.16)}
+  .l-seal span{font-family:"Cormorant Garamond",serif;color:#fbe4e9;font-size:26px;font-style:italic}
+  /* certificate specifics */
+  .cert .c-crown{text-align:center;font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .cert .c-title{font-family:"Cormorant Garamond",serif;text-align:center;font-size:34px;color:var(--ink);margin:8px 0 4px}
+  .cert .c-name{font-family:"Cormorant Garamond",serif;font-style:italic;text-align:center;font-size:40px;color:var(--garnet-deep);margin:16px 0}
+  .cert .c-text{text-align:center;font-family:"Nunito";color:var(--ink-soft);font-size:15.5px;max-width:80%;margin:0 auto}
+
+  /* watermark on free preview */
+  .wm{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:3}
+  .wm span{font-family:"Cormorant Garamond",serif;font-size:34px;color:rgba(142,43,67,.14);transform:rotate(-24deg);letter-spacing:.14em;font-weight:600;text-align:center;line-height:1.3}
+  .letter.unlocked .wm{display:none}
+
+  .studio-actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+
+  /* ---- unlock modal ---- */
+  .overlay{position:fixed;inset:0;background:rgba(40,24,34,.55);backdrop-filter:blur(4px);z-index:80;display:none;place-items:center;padding:20px}
+  .overlay.on{display:grid}
+  .modal{background:var(--paper);border-radius:20px;max-width:440px;width:100%;padding:34px 32px;box-shadow:0 30px 70px rgba(0,0,0,.4);border:1px solid var(--paper-edge);text-align:center}
+  .modal .r-seal{width:76px;height:76px;margin-bottom:16px}
+  .modal .r-seal span{font-size:30px}
+  .modal h3{font-size:30px;margin-bottom:6px}
+  .modal p{color:var(--ink-soft);margin:0 0 20px;font-size:15px}
+  .modal .price{font-family:"Cormorant Garamond",serif;font-size:44px;color:var(--garnet-deep);margin:2px 0 4px}
+  .modal .price small{font-size:16px;color:var(--ink-soft);font-family:"Nunito";font-weight:700}
+  .pay-link{display:block;background:var(--garnet-deep);color:#fdeef1;border:none;border-radius:12px;padding:15px;font-weight:700;font-size:16px;text-decoration:none;margin-bottom:14px;transition:.2s}
+  .pay-link:hover{background:var(--garnet)}
+  .code-row{display:flex;gap:8px;margin-bottom:10px}
+  .code-row input{text-align:center;letter-spacing:.18em;font-weight:700;text-transform:uppercase}
+  .code-row button{background:var(--ink);color:var(--paper);border:none;border-radius:10px;padding:0 18px;font-weight:700}
+  .msg{font-size:14px;font-weight:700;min-height:20px}
+  .msg.err{color:var(--garnet-deep)}
+  .msg.ok{color:var(--ok)}
+  .x{position:absolute;top:16px;right:20px;background:none;border:none;font-size:24px;color:var(--ink-soft)}
+  .modal-inner{position:relative}
+  .fineprint{font-size:12px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+
+  footer{border-top:1px solid var(--paper-edge);padding:34px 0;text-align:center;color:var(--ink-soft);font-size:14px}
+  footer .brand{justify-content:center;margin-bottom:10px}
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;z-index:90;opacity:0;transition:.3s;pointer-events:none}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <div class="brand"><span class="seal-mini">P</span>platonik&nbsp;aşk</div>
+    <nav class="nav-links">
+      <button data-go="home" class="active">Ana Sayfa</button>
+      <button data-go="test">Test</button>
+      <button data-go="studio">Oluştur</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<section id="home" class="view on">
+  <div class="wrap hero">
+    <div class="eyebrow fade">söylenmemiş her şeye bir yer</div>
+    <h1 class="fade d1">Kalbinde kalan <em>o kişi</em><br/>için bir satır.</h1>
+    <p class="lede fade d2">Platonik aşkın adını koy. Ona hiç göndermeyeceğin ya da bir gün göndereceğin mektubu, itirafı, sertifikayı burada yaz — kimseyi etiketlemeden, tamamen sana ait.</p>
+    <div class="cta-row fade d3">
+      <button class="btn primary" data-go="test">Platonik Aşk Testi</button>
+      <button class="btn ghost" data-go="studio">Mektup Oluştur</button>
+    </div>
+    <div class="seal-big fade d4"><span>P</span></div>
+  </div>
+
+  <div class="wrap">
+    <div class="steps">
+      <div class="step"><div class="n">Ⅰ · TEST</div><h3>Önce kendini tanı</h3><p>Kısa bir testle platonik aşkının hangi tür olduğunu öğren. Sonucu ücretsiz gör, detaylı raporu istersen aç.</p></div>
+      <div class="step"><div class="n">Ⅱ · YAZ</div><h3>Sonra ona yaz</h3><p>Mektup, itiraf, şiir ya da bir "platonik aşk sertifikası" oluştur. Canlı önizlemeyle anında şekillenir.</p></div>
+      <div class="step"><div class="n">Ⅲ · SAKLA</div><h3>Mühürle, indir</h3><p>Mum mühürlü, yüksek çözünürlüklü halini indir; sakla, çerçevele ya da bir gün gönder. Karar senin.</p></div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:64px">
+    <div class="duo">
+      <div class="card-lg">
+        <div class="tag">Ücretsiz başla</div>
+        <h2>Platonik Aşk Testi</h2>
+        <p>8 soruda kalbinin arketi­pini bul: Sessiz Bekleyen mi, Cesur Kalp mi? Temel sonuç bedava, detaylı rapor küçük bir ücretle.</p>
+        <div class="price-pill">Sonuç ücretsiz · Rapor 39 ₺</div><br/>
+        <button class="btn primary" data-go="test">Teste başla</button>
+      </div>
+      <div class="card-lg">
+        <div class="tag">Kişiye özel</div>
+        <h2>Mektup &amp; Sertifika</h2>
+        <p>Adını, tarihini, sözünü yaz; mum mühürlü mektubun hazır olsun. Ekranda ücretsiz gör, indirmek için kilidini aç.</p>
+        <div class="price-pill">Önizleme ücretsiz · İndirme 49 ₺</div><br/>
+        <button class="btn ghost" data-go="studio">Oluşturmaya başla</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEST ============ -->
+<section id="test" class="view">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">bir kalbin röntgeni</div>
+      <h2>Platonik Aşk Testi</h2>
+      <p>Dürüst cevapla — kimse görmüyor. Sekiz soru, bir buçuk dakika.</p>
+    </div>
+
+    <div class="quiz" id="quizArea">
+      <div class="qbar"><i id="qbar"></i></div>
+      <div class="qcard" id="qcard"></div>
+    </div>
+
+    <div class="result" id="resultArea" style="display:none">
+      <div class="r-seal"><span id="rInitial">P</span></div>
+      <div class="r-archetype" id="rName">—</div>
+      <div class="r-line" id="rLine">—</div>
+      <div class="r-score" id="rScore">—</div>
+
+      <div class="locked">
+        <span class="lock-badge">🔒 Detaylı rapor kilitli</span>
+        <h3 id="rReportTitle">Sana özel derin analiz</h3>
+        <div class="blurwrap">
+          <div class="blurred" id="rBlur">
+            Bu profildeki insanlar genellikle duygularını yıllarca sakladıkları için… karşı tarafın en küçük jestini bile büyütme eğilimi… ilişkiye adım atmadan önce mutlaka şunu yapmalısın… sana en uygun üç hamle… ve asla yapmaman gereken tek şey…
+          </div>
+        </div>
+        <ul>
+          <li>Arketipinin tam açıklaması ve güçlü/zayıf yönlerin</li>
+          <li>“Adım atmalı mıyım?” sorusuna sana özel 3 tavsiye</li>
+          <li>Paylaşılabilir sonuç kartın (Instagram/Story boyutu)</li>
+        </ul>
+        <button class="btn primary" onclick="openUnlock('report')">Raporu aç · 39 ₺</button>
+        <button class="btn ghost" onclick="restartQuiz()" style="margin-left:8px">Testi tekrar çöz</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STUDIO ============ -->
+<section id="studio" class="view">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">mürekkep &amp; mum</div>
+      <h2>Mektup &amp; Sertifika Oluştur</h2>
+      <p>Sağda yazdıkça sol anında şekillenir. Beğenince mühürle ve indir.</p>
+    </div>
+
+    <div class="studio">
+      <div class="panel">
+        <div class="typerow" id="typeRow">
+          <button class="typebtn active" data-type="mektup">Mektup</button>
+          <button class="typebtn" data-type="itiraf">İtiraf</button>
+          <button class="typebtn" data-type="cert">Sertifika</button>
+        </div>
+
+        <div id="fieldsLetter">
+          <label class="fld"><span>Kime</span><input id="fTo" maxlength="40" placeholder="ör. Sana" value="Sana" /></label>
+          <label class="fld"><span>Mesajın</span><textarea id="fBody" maxlength="600" placeholder="İçinden geçenleri yaz...">Adını hiç anmadan, seni her gün düşündüğümü bilmeni isterdim. Belki bir gün bu mektubu okursun, belki hiç. Ama yazmak bile iyi geldi.</textarea></label>
+          <label class="fld"><span>İmza</span><input id="fFrom" maxlength="40" placeholder="ör. Bir hayranın" value="Sessiz bir kalp" /></label>
+        </div>
+
+        <div id="fieldsCert" style="display:none">
+          <label class="fld"><span>Sertifika kime</span><input id="cName" maxlength="40" placeholder="ör. Sen" value="Sen" /></label>
+          <label class="fld"><span>Ne sertifikası</span><input id="cTitle" maxlength="50" value="Kalbimin Platonik Aşkı" /></label>
+          <label class="fld"><span>Alt açıklama</span><textarea id="cText" maxlength="200">Söylenmemiş ama en gerçek duyguyla, bu belge onun sahibine takdim edilmiştir.</textarea></label>
+        </div>
+
+        <label class="fld"><span>Tarih (opsiyonel)</span><input id="fDate" maxlength="30" placeholder="ör. Bishkek, bu akşam" /></label>
+
+        <div class="studio-actions">
+          <button class="btn primary" id="dlBtn" onclick="tryDownload()">Mühürle &amp; İndir · 49 ₺</button>
+          <button class="btn ghost" onclick="scrollPrev()">Önizle</button>
+        </div>
+        <p class="fineprint" style="margin-top:14px">Oluşturduğun her şey yalnızca senin tarayıcında kalır; hiçbir yerde yayınlanmaz, kimse göremez.</p>
+      </div>
+
+      <div class="stage">
+        <div class="letter" id="paper">
+          <!-- letter mode -->
+          <div id="mLetter">
+            <div class="l-date" id="pDate"></div>
+            <div class="l-to" id="pTo">Sana</div>
+            <div class="l-body" id="pBody"></div>
+            <div class="l-from" id="pFrom"></div>
+            <div class="l-seal"><span>P</span></div>
+          </div>
+          <!-- cert mode -->
+          <div id="mCert" style="display:none">
+            <div class="c-crown">· Platonik Aşk Sertifikası ·</div>
+            <div class="c-title" id="pcTitle"></div>
+            <div class="c-name" id="pcName"></div>
+            <div class="c-text" id="pcText"></div>
+            <div class="l-seal"><span>P</span></div>
+          </div>
+          <div class="wm" id="wm"><span>platonikask.com<br/>ÖNİZLEME</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UNLOCK MODAL ============ -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-inner">
+      <button class="x" onclick="closeUnlock()">×</button>
+      <div class="r-seal"><span>P</span></div>
+      <h3 id="uTitle">Kilidi aç</h3>
+      <p id="uSub">Ödemeni yap, anında bir kod al, aşağıya gir.</p>
+      <div class="price"><span id="uPrice">49</span> <small>₺ · tek seferlik</small></div>
+      <a class="pay-link" id="payLink" href="#" target="_blank" rel="noopener">Öde &amp; kodu al →</a>
+      <div class="code-row">
+        <input id="codeInput" placeholder="KODU GİR" maxlength="16" />
+        <button onclick="checkCode()">Aç</button>
+      </div>
+      <div class="msg" id="codeMsg"></div>
+      <p class="fineprint">Ödeme sistemi çok yakında açılıyor. Şimdilik denemek için kod: <b>PLATONIK</b></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="seal-mini">P</span>platonik aşk</div>
+    <div>Söylenmemiş her şeye bir yer · platonikask.com</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------- NAV ---------------- */
+const views = ['home','test','studio'];
+function go(v){
+  views.forEach(x=>document.getElementById(x).classList.toggle('on',x===v));
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.toggle('active',b.dataset.go===v));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('on');setTimeout(()=>el.classList.remove('on'),2600);}
+
+/* ---------------- TEST ---------------- */
+const QUESTIONS = [
+  {q:"O kişi aklına ne sıklıkla geliyor?",a:[["Neredeyse her gün",3],["Ara sıra, beklenmedik anlarda",2],["Nadiren ama derinden",1]]},
+  {q:"Duygularını ona söyledin mi?",a:[["Hayır, hiç cesaret edemedim",3],["İma ettim ama açıkça değil",2],["Söyledim / söylemek üzereyim",1]]},
+  {q:"Onun bir jestini kafanda ne yaparsın?",a:[["Günlerce analiz ederim",3],["Biraz düşünür geçerim",2],["Fazla anlam yüklemem",1]]},
+  {q:"Bu aşkın ihtimali hakkında ne düşünüyorsun?",a:[["İmkânsız ama yine de umuyorum",3],["Belki, doğru zaman gelirse",2],["Gerçekçi olmaya çalışıyorum",1]]},
+  {q:"Onu sosyal medyada...",a:[["Sessizce takip ederim",3],["Ara sıra bakarım",2],["Özellikle uzak dururum",1]]},
+  {q:"Bu duygu hayatını nasıl etkiliyor?",a:[["Bazen başka şeye odaklanamıyorum",3],["Arada bir dalıp gidiyorum",2],["Güzel bir arka plan, o kadar",1]]},
+  {q:"Ona bir mektup yazsan...",a:[["Asla göndermezdim ama yazardım",3],["Bir gün belki gönderirdim",2],["Yüz yüze söylemeyi tercih ederim",1]]},
+  {q:"En çok hangisini istiyorsun?",a:[["Sadece bilmesini",3],["Bir şans denemeyi",2],["İç huzurumu geri almayı",1]]}
+];
+const ARCHES = [
+  {min:20,name:"Sessiz Bekleyen",line:"Derinden seven ama hiç söyleyemeyen kalp.",init:"S"},
+  {min:14,name:"Umutlu Gözlemci",line:"Bir yandan izleyen, bir yandan umut eden.",init:"U"},
+  {min:8, name:"Cesur Kalp",line:"Duygusuyla barışık, adım atmaya hazır.",init:"C"}
+];
+let qi=0, score=0;
+function renderQ(){
+  const c=document.getElementById('qcard');
+  const item=QUESTIONS[qi];
+  document.getElementById('qbar').style.width=((qi)/QUESTIONS.length*100)+'%';
+  c.innerHTML=`<div class="qnum">Soru ${qi+1} / ${QUESTIONS.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div class="opts">${item.a.map((o,i)=>`<button class="opt" onclick="answer(${o[1]})">${o[0]}</button>`).join('')}</div>`;
+}
+function answer(pts){
+  score+=pts; qi++;
+  if(qi<QUESTIONS.length){renderQ();}
+  else{showResult();}
+}
+function showResult(){
+  document.getElementById('qbar').style.width='100%';
+  document.getElementById('quizArea').style.display='none';
+  const ra=document.getElementById('resultArea'); ra.style.display='block';
+  const arch=ARCHES.find(a=>score>=a.min)||ARCHES[ARCHES.length-1];
+  document.getElementById('rInitial').textContent=arch.init;
+  document.getElementById('rName').textContent=arch.name;
+  document.getElementById('rLine').textContent=arch.line;
+  const pct=Math.round(score/(QUESTIONS.length*3)*100);
+  document.getElementById('rScore').textContent=`Platonik yoğunluk: %${pct}`;
+  document.getElementById('rReportTitle').textContent=`“${arch.name}” için derin analiz`;
+}
+function restartQuiz(){qi=0;score=0;document.getElementById('resultArea').style.display='none';document.getElementById('quizArea').style.display='block';renderQ();}
+renderQ();
+
+/* ---------------- STUDIO ---------------- */
+let mode='mektup', studioUnlocked=false;
+const $=id=>document.getElementById(id);
+document.querySelectorAll('.typebtn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.typebtn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); mode=b.dataset.type; switchMode();
+}));
+function switchMode(){
+  const cert = mode==='cert';
+  $('fieldsLetter').style.display=cert?'none':'block';
+  $('fieldsCert').style.display=cert?'block':'none';
+  $('mLetter').style.display=cert?'none':'block';
+  $('mCert').style.display=cert?'block':'none';
+  $('paper').classList.toggle('cert',cert);
+  if(mode==='itiraf' && !$('fBody').dataset.touched){
+    $('fTo').value='Sana'; $('fFrom').value='Beni bilmeyen sana';
+  }
+  render();
+}
+function render(){
+  // letter
+  $('pDate').textContent = $('fDate').value || '';
+  $('pTo').textContent = $('fTo').value || 'Sana';
+  $('pBody').textContent = $('fBody').value || '...';
+  $('pFrom').textContent = $('fFrom').value ? '— '+$('fFrom').value : '';
+  // cert
+  $('pcTitle').textContent = $('cTitle').value || '';
+  $('pcName').textContent = $('cName').value || '';
+  $('pcText').textContent = $('cText').value || '';
+  if($('fDate').value){ /* cert shows date subtly via text already */ }
+}
+['fTo','fBody','fFrom','fDate','cName','cTitle','cText'].forEach(id=>{
+  const el=$(id); if(el){el.addEventListener('input',()=>{el.dataset.touched=1;render();});}
+});
+render();
+function scrollPrev(){document.getElementById('paper').scrollIntoView({behavior:'smooth',block:'center'});}
+
+/* ---------------- UNLOCK ---------------- */
+let unlockTarget='studio'; // 'studio' or 'report'
+// Ödeme linkleri hazır olduğunda buraya yapıştır (Shopier / Gumroad / Papara).
+// Boş bırakıldığı sürece buton "yakında" olarak görünür.
+const PAY_LINKS = {
+  studio: "",
+  report: ""
+};
+// TODO: gerçek sistemde kod doğrulamasını sunucuda yap veya ödeme sağlayıcısının
+// otomatik teslimini kullan. Bu MVP için tek demo kod:
+const VALID_CODE = "PLATONIK";
+
+function openUnlock(target){
+  unlockTarget=target;
+  const isReport = target==='report';
+  $('uTitle').textContent = isReport?'Detaylı raporu aç':'Mektubunu indir';
+  $('uSub').textContent = isReport?'Ödemeni yap, kodunu al, raporun anında açılsın.':'Ödemeni yap, kodunu al, mühürlü halini indir.';
+  $('uPrice').textContent = isReport?'39':'49';
+  const link = PAY_LINKS[isReport?'report':'studio'];
+  const pl = $('payLink');
+  if(link){
+    pl.href = link; pl.removeAttribute('aria-disabled');
+    pl.textContent = 'Öde & kodu al →';
+  } else {
+    pl.href = '#'; pl.setAttribute('aria-disabled','true');
+    pl.textContent = 'Ödeme çok yakında';
+    pl.onclick = e => { e.preventDefault(); toast('Ödeme sistemi çok yakında açılıyor.'); };
+  }
+  $('codeMsg').textContent=''; $('codeInput').value='';
+  $('overlay').classList.add('on');
+}
+function closeUnlock(){$('overlay').classList.remove('on');}
+$('overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeUnlock();});
+
+function checkCode(){
+  const v=$('codeInput').value.trim().toUpperCase();
+  const m=$('codeMsg');
+  if(v===VALID_CODE){
+    m.className='msg ok'; m.textContent='Kilit açıldı ✓';
+    setTimeout(()=>{
+      closeUnlock();
+      if(unlockTarget==='report'){ unlockReport(); }
+      else { studioUnlocked=true; $('paper').classList.add('unlocked'); doDownload(); }
+    },700);
+  }else{
+    m.className='msg err'; m.textContent='Kod hatalı. Tekrar dene.';
+  }
+}
+function unlockReport(){
+  const b=$('rBlur');
+  b.classList.remove('blurred');
+  b.innerHTML = `<b>${$('rName').textContent}</b> profili, duygularını uzun süre içinde taşıyan insanlara özgüdür. En büyük gücün derinliğin; en büyük riskin ise hiç adım atmadan yılların geçmesi.<br/><br/>
+  <b>Sana özel 3 hamle:</b><br/>1) Duygunu bir baskı olarak değil, küçük bir dürüstlük anı olarak paylaşmayı dene.<br/>2) Cevabı senaryolaştırmayı bırak; belirsizlik, hayır'dan daha yorucudur.<br/>3) Kendine bir tarih koy — o güne kadar ya söyle ya da bırak.<br/><br/>
+  <i>Asla yapma:</i> Cevabı olmayan bir bekleyişi "sadakat" sanmak.`;
+  document.querySelector('.locked .lock-badge').textContent='✓ Rapor açıldı';
+  toast('Raporun açıldı ✓');
+}
+
+/* download */
+function tryDownload(){
+  if(studioUnlocked){ doDownload(); }
+  else { openUnlock('studio'); }
+}
+function doDownload(){
+  const node=document.getElementById('paper');
+  toast('Görsel hazırlanıyor...');
+  html2canvas(node,{scale:3,backgroundColor:null}).then(canvas=>{
+    const a=document.createElement('a');
+    a.download='platonik-ask-'+(mode)+'.png';
+    a.href=canvas.toDataURL('image/png');
+    a.click();
+    toast('İndirildi ✓');
+  }).catch(()=>toast('İndirme başarısız oldu'));
+}
+</script>
+</body>
+</html>
