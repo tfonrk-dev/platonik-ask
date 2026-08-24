@@ -118,7 +118,7 @@
   .card-lg .tag{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--garnet)}
   .card-lg h2{font-size:34px;margin:10px 0 10px}
   .card-lg p{color:var(--ink-soft);margin:0 0 20px}
-  .price-pill{display:inline-block;font-size:13px;font-weight:700;color:var(--ink);background:var(--paper-deep);border-radius:999px;padding:6px 13px;margin-bottom:18px}
+  .price-pill{display:inline-block;font-size:13px;font-weight:700;color:var(--garnet-deep);background:var(--paper-deep);border-radius:999px;padding:6px 13px;margin-bottom:18px}
 
   @media(max-width:760px){.steps{grid-template-columns:1fr}.duo{grid-template-columns:1fr}}
 
@@ -188,33 +188,13 @@
   .cert .c-name{font-family:"Cormorant Garamond",serif;font-style:italic;text-align:center;font-size:40px;color:var(--garnet-deep);margin:16px 0}
   .cert .c-text{text-align:center;font-family:"Nunito";color:var(--ink-soft);font-size:15.5px;max-width:80%;margin:0 auto}
 
-  /* watermark on free preview */
-  .wm{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:3}
-  .wm span{font-family:"Cormorant Garamond",serif;font-size:34px;color:rgba(142,43,67,.14);transform:rotate(-24deg);letter-spacing:.14em;font-weight:600;text-align:center;line-height:1.3}
-  .letter.unlocked .wm{display:none}
+  /* ince köşe imzası — indirilen görselde de kalır */
+  .wm{position:absolute;left:42px;bottom:20px;pointer-events:none;z-index:3;display:flex;align-items:center;gap:7px}
+  .wm i{width:5px;height:5px;border-radius:50%;background:rgba(142,43,67,.32);display:block}
+  .wm span{font-family:"Nunito",sans-serif;font-size:11px;letter-spacing:.2em;color:rgba(142,43,67,.42);font-weight:700}
 
   .studio-actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
 
-  /* ---- unlock modal ---- */
-  .overlay{position:fixed;inset:0;background:rgba(40,24,34,.55);backdrop-filter:blur(4px);z-index:80;display:none;place-items:center;padding:20px}
-  .overlay.on{display:grid}
-  .modal{background:var(--paper);border-radius:20px;max-width:440px;width:100%;padding:34px 32px;box-shadow:0 30px 70px rgba(0,0,0,.4);border:1px solid var(--paper-edge);text-align:center}
-  .modal .r-seal{width:76px;height:76px;margin-bottom:16px}
-  .modal .r-seal span{font-size:30px}
-  .modal h3{font-size:30px;margin-bottom:6px}
-  .modal p{color:var(--ink-soft);margin:0 0 20px;font-size:15px}
-  .modal .price{font-family:"Cormorant Garamond",serif;font-size:44px;color:var(--garnet-deep);margin:2px 0 4px}
-  .modal .price small{font-size:16px;color:var(--ink-soft);font-family:"Nunito";font-weight:700}
-  .pay-link{display:block;background:var(--garnet-deep);color:#fdeef1;border:none;border-radius:12px;padding:15px;font-weight:700;font-size:16px;text-decoration:none;margin-bottom:14px;transition:.2s}
-  .pay-link:hover{background:var(--garnet)}
-  .code-row{display:flex;gap:8px;margin-bottom:10px}
-  .code-row input{text-align:center;letter-spacing:.18em;font-weight:700;text-transform:uppercase}
-  .code-row button{background:var(--ink);color:var(--paper);border:none;border-radius:10px;padding:0 18px;font-weight:700}
-  .msg{font-size:14px;font-weight:700;min-height:20px}
-  .msg.err{color:var(--garnet-deep)}
-  .msg.ok{color:var(--ok)}
-  .x{position:absolute;top:16px;right:20px;background:none;border:none;font-size:24px;color:var(--ink-soft)}
-  .modal-inner{position:relative}
   .fineprint{font-size:12px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
 
   footer{border-top:1px solid var(--paper-edge);padding:34px 0;text-align:center;color:var(--ink-soft);font-size:14px}
@@ -268,15 +248,15 @@
       <div class="card-lg">
         <div class="tag">Ücretsiz başla</div>
         <h2>Platonik Aşk Testi</h2>
-        <p>8 soruda kalbinin arketi­pini bul: Sessiz Bekleyen mi, Cesur Kalp mi? Temel sonuç bedava, detaylı rapor küçük bir ücretle.</p>
-        <div class="price-pill">Sonuç ücretsiz · Rapor 39 ₺</div><br/>
+        <p>8 soruda kalbinin arketi­pini bul: Sessiz Bekleyen mi, Cesur Kalp mi? Sonucun da, sana özel derin analizin de ücretsiz.</p>
+        <div class="price-pill">Tamamen ücretsiz</div><br/>
         <button class="btn primary" data-go="test">Teste başla</button>
       </div>
       <div class="card-lg">
         <div class="tag">Kişiye özel</div>
         <h2>Mektup &amp; Sertifika</h2>
-        <p>Adını, tarihini, sözünü yaz; mum mühürlü mektubun hazır olsun. Ekranda ücretsiz gör, indirmek için kilidini aç.</p>
-        <div class="price-pill">Önizleme ücretsiz · İndirme 49 ₺</div><br/>
+        <p>Adını, tarihini, sözünü yaz; mum mühürlü mektubun hazır olsun. Yüksek çözünürlüklü halini tek tıkla indir.</p>
+        <div class="price-pill">Ücretsiz · Anında indir</div><br/>
         <button class="btn ghost" data-go="studio">Oluşturmaya başla</button>
       </div>
     </div>
@@ -304,20 +284,16 @@
       <div class="r-score" id="rScore">—</div>
 
       <div class="locked">
-        <span class="lock-badge">🔒 Detaylı rapor kilitli</span>
+        <span class="lock-badge">✦ Sana özel analiz</span>
         <h3 id="rReportTitle">Sana özel derin analiz</h3>
         <div class="blurwrap">
-          <div class="blurred" id="rBlur">
-            Bu profildeki insanlar genellikle duygularını yıllarca sakladıkları için… karşı tarafın en küçük jestini bile büyütme eğilimi… ilişkiye adım atmadan önce mutlaka şunu yapmalısın… sana en uygun üç hamle… ve asla yapmaman gereken tek şey…
-          </div>
+          <div id="rBlur"></div>
         </div>
-        <ul>
-          <li>Arketipinin tam açıklaması ve güçlü/zayıf yönlerin</li>
-          <li>“Adım atmalı mıyım?” sorusuna sana özel 3 tavsiye</li>
-          <li>Paylaşılabilir sonuç kartın (Instagram/Story boyutu)</li>
-        </ul>
-        <button class="btn primary" onclick="openUnlock('report')">Raporu aç · 39 ₺</button>
-        <button class="btn ghost" onclick="restartQuiz()" style="margin-left:8px">Testi tekrar çöz</button>
+        <div class="studio-actions">
+          <button class="btn primary" data-go="studio">Mektubunu yaz</button>
+          <button class="btn ghost" onclick="restartQuiz()">Testi tekrar çöz</button>
+          <button class="btn ghost" onclick="sharePage()">Sonucu paylaş</button>
+        </div>
       </div>
     </div>
   </div>
@@ -355,7 +331,7 @@
         <label class="fld"><span>Tarih (opsiyonel)</span><input id="fDate" maxlength="30" placeholder="ör. Bishkek, bu akşam" /></label>
 
         <div class="studio-actions">
-          <button class="btn primary" id="dlBtn" onclick="tryDownload()">Mühürle &amp; İndir · 49 ₺</button>
+          <button class="btn primary" id="dlBtn" onclick="doDownload()">Mühürle &amp; İndir</button>
           <button class="btn ghost" onclick="scrollPrev()">Önizle</button>
         </div>
         <p class="fineprint" style="margin-top:14px">Oluşturduğun her şey yalnızca senin tarayıcında kalır; hiçbir yerde yayınlanmaz, kimse göremez.</p>
@@ -379,32 +355,12 @@
             <div class="c-text" id="pcText"></div>
             <div class="l-seal"><span>P</span></div>
           </div>
-          <div class="wm" id="wm"><span>platonikask.com<br/>ÖNİZLEME</span></div>
+          <div class="wm" id="wm"><i></i><span>platonikask.com</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ============ UNLOCK MODAL ============ -->
-<div class="overlay" id="overlay">
-  <div class="modal">
-    <div class="modal-inner">
-      <button class="x" onclick="closeUnlock()">×</button>
-      <div class="r-seal"><span>P</span></div>
-      <h3 id="uTitle">Kilidi aç</h3>
-      <p id="uSub">Ödemeni yap, anında bir kod al, aşağıya gir.</p>
-      <div class="price"><span id="uPrice">49</span> <small>₺ · tek seferlik</small></div>
-      <a class="pay-link" id="payLink" href="#" target="_blank" rel="noopener">Öde &amp; kodu al →</a>
-      <div class="code-row">
-        <input id="codeInput" placeholder="KODU GİR" maxlength="16" />
-        <button onclick="checkCode()">Aç</button>
-      </div>
-      <div class="msg" id="codeMsg"></div>
-      <p class="fineprint">Ödeme sistemi çok yakında açılıyor. Şimdilik denemek için kod: <b>PLATONIK</b></p>
-    </div>
-  </div>
-</div>
 
 <footer>
   <div class="wrap">
@@ -505,12 +461,13 @@ function showResult(){
   const pct=Math.round(score/(QUESTIONS.length*3)*100);
   document.getElementById('rScore').textContent=`Platonik yoğunluk: %${pct}`;
   document.getElementById('rReportTitle').textContent=`“${arch.name}” için derin analiz`;
+  fillReport();
 }
 function restartQuiz(){qi=0;score=0;document.getElementById('resultArea').style.display='none';document.getElementById('quizArea').style.display='block';renderQ();}
 renderQ();
 
 /* ---------------- STUDIO ---------------- */
-let mode='mektup', studioUnlocked=false;
+let mode='mektup';
 const $=id=>document.getElementById(id);
 document.querySelectorAll('.typebtn').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.typebtn').forEach(x=>x.classList.remove('active'));
@@ -546,75 +503,20 @@ function render(){
 render();
 function scrollPrev(){document.getElementById('paper').scrollIntoView({behavior:'smooth',block:'center'});}
 
-/* ---------------- UNLOCK ---------------- */
-let unlockTarget='studio'; // 'studio' or 'report'
-// Ödeme linkleri hazır olduğunda buraya yapıştır (Shopier / Gumroad / Papara).
-// Boş bırakıldığı sürece buton "yakında" olarak görünür.
-const PAY_LINKS = {
-  studio: "",
-  report: ""
-};
-// TODO: gerçek sistemde kod doğrulamasını sunucuda yap veya ödeme sağlayıcısının
-// otomatik teslimini kullan. Bu MVP için tek demo kod:
-const VALID_CODE = "PLATONIK";
-
-function openUnlock(target){
-  unlockTarget=target;
-  const isReport = target==='report';
-  $('uTitle').textContent = isReport?'Detaylı raporu aç':'Mektubunu indir';
-  $('uSub').textContent = isReport?'Ödemeni yap, kodunu al, raporun anında açılsın.':'Ödemeni yap, kodunu al, mühürlü halini indir.';
-  $('uPrice').textContent = isReport?'39':'49';
-  const link = PAY_LINKS[isReport?'report':'studio'];
-  const pl = $('payLink');
-  if(link){
-    pl.href = link; pl.removeAttribute('aria-disabled');
-    pl.textContent = 'Öde & kodu al →';
-  } else {
-    pl.href = '#'; pl.setAttribute('aria-disabled','true');
-    pl.textContent = 'Ödeme çok yakında';
-    pl.onclick = e => { e.preventDefault(); toast('Ödeme sistemi çok yakında açılıyor.'); };
-  }
-  $('codeMsg').textContent=''; $('codeInput').value='';
-  $('overlay').classList.add('on');
-}
-function closeUnlock(){$('overlay').classList.remove('on');}
-$('overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeUnlock();});
-
-function checkCode(){
-  const v=$('codeInput').value.trim().toUpperCase();
-  const m=$('codeMsg');
-  if(v===VALID_CODE){
-    m.className='msg ok'; m.textContent='Kilit açıldı ✓';
-    setTimeout(()=>{
-      closeUnlock();
-      if(unlockTarget==='report'){ unlockReport(); }
-      else { studioUnlocked=true; $('paper').classList.add('unlocked'); doDownload(); }
-    },700);
-  }else{
-    m.className='msg err'; m.textContent='Kod hatalı. Tekrar dene.';
-  }
-}
-function unlockReport(){
-  const b=$('rBlur');
-  b.classList.remove('blurred');
-  b.innerHTML = `<b>${$('rName').textContent}</b> profili, duygularını uzun süre içinde taşıyan insanlara özgüdür. En büyük gücün derinliğin; en büyük riskin ise hiç adım atmadan yılların geçmesi.<br/><br/>
+/* ---------------- RAPOR (herkese açık) ---------------- */
+function fillReport(){
+  $('rBlur').innerHTML = `<b>${$('rName').textContent}</b> profili, duygularını uzun süre içinde taşıyan insanlara özgüdür. En büyük gücün derinliğin; en büyük riskin ise hiç adım atmadan yılların geçmesi.<br/><br/>
   <b>Sana özel 3 hamle:</b><br/>1) Duygunu bir baskı olarak değil, küçük bir dürüstlük anı olarak paylaşmayı dene.<br/>2) Cevabı senaryolaştırmayı bırak; belirsizlik, hayır'dan daha yorucudur.<br/>3) Kendine bir tarih koy — o güne kadar ya söyle ya da bırak.<br/><br/>
   <i>Asla yapma:</i> Cevabı olmayan bir bekleyişi "sadakat" sanmak.`;
-  document.querySelector('.locked .lock-badge').textContent='✓ Rapor açıldı';
-  toast('Raporun açıldı ✓');
 }
 
 /* download */
-function tryDownload(){
-  if(studioUnlocked){ doDownload(); }
-  else { openUnlock('studio'); }
-}
 function doDownload(){
   const node=document.getElementById('paper');
   toast('Görsel hazırlanıyor...');
   html2canvas(node,{scale:3,backgroundColor:null}).then(canvas=>{
     const a=document.createElement('a');
-    a.download='platonik-ask-'+(mode)+'.png';
+    a.download='platonikask-com-'+(mode)+'.png';
     a.href=canvas.toDataURL('image/png');
     a.click();
     toast('İndirildi ✓');
