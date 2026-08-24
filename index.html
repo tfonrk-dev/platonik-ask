@@ -205,6 +205,11 @@
   .share-btn.solid{background:var(--garnet-deep);border-color:var(--garnet-deep);color:var(--paper)}
   .share-btn.solid:hover{background:var(--garnet)}
   .share-note{font-size:13px;color:var(--ink-soft);margin-top:16px;opacity:.8}
+  .social{display:flex;gap:12px;justify-content:center;margin:24px 0 2px}
+  .social a{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--paper-edge);background:var(--paper);color:var(--garnet-deep);transition:.2s}
+  .social a:hover{background:var(--garnet-deep);border-color:var(--garnet-deep);color:var(--paper);transform:translateY(-2px)}
+  .social svg{width:19px;height:19px;fill:currentColor;display:block}
+  .handle{font-size:13px;color:var(--ink-soft);margin-top:11px;letter-spacing:.03em}
   .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;z-index:90;opacity:0;transition:.3s;pointer-events:none}
   .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
@@ -373,6 +378,22 @@
       <button class="share-btn" onclick="copyLink()">Linki kopyala</button>
     </div>
     <div class="share-note">Birinin bunu görmesi gerekiyorsa, sessizce gönder.</div>
+
+    <div class="social">
+      <a href="https://www.instagram.com/platonikaskcom" target="_blank" rel="noopener noreferrer" aria-label="Instagram: @platonikaskcom" title="Instagram · @platonikaskcom">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.36 2.67.95 3.34.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.47 1.38 2.13.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.8-.31 1.47-.72 2.13-1.38.66-.66 1.07-1.33 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.8-.72-1.47-1.38-2.13-.66-.66-1.33-1.07-2.13-1.38-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@platonikaskcom" target="_blank" rel="noopener noreferrer" aria-label="TikTok: @platonikaskcom" title="TikTok · @platonikaskcom">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.82a4.28 4.28 0 0 1-1.06-2.82h-3.2v12.9a2.6 2.6 0 0 1-2.6 2.5 2.6 2.6 0 0 1 0-5.2c.27 0 .53.04.78.12v-3.3a5.9 5.9 0 0 0-.78-.05 5.85 5.85 0 1 0 5.85 5.85V9.4a7.5 7.5 0 0 0 4.35 1.39V7.6a4.3 4.3 0 0 1-3.34-1.78z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@platonikaskcom" target="_blank" rel="noopener noreferrer" aria-label="YouTube: @platonikaskcom" title="YouTube · @platonikaskcom">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+      </a>
+      <a href="https://www.pinterest.com/platonikaskcom" target="_blank" rel="noopener noreferrer" aria-label="Pinterest: @platonikaskcom" title="Pinterest · @platonikaskcom">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.43 7.63 11.18-.11-.95-.2-2.41.04-3.45.22-.94 1.4-5.96 1.4-5.96s-.36-.72-.36-1.78c0-1.66.97-2.9 2.17-2.9 1.02 0 1.52.77 1.52 1.69 0 1.03-.66 2.57-1 4-.28 1.2.6 2.17 1.78 2.17 2.14 0 3.78-2.25 3.78-5.5 0-2.88-2.07-4.89-5.02-4.89-3.42 0-5.43 2.56-5.43 5.21 0 1.03.4 2.14.89 2.74.1.12.11.22.08.34-.09.38-.29 1.2-.33 1.37-.05.22-.17.27-.4.16-1.5-.7-2.43-2.89-2.43-4.65 0-3.79 2.75-7.27 7.93-7.27 4.16 0 7.4 2.97 7.4 6.93 0 4.14-2.61 7.47-6.23 7.47-1.22 0-2.36-.63-2.75-1.38l-.75 2.85c-.27 1.04-1 2.35-1.49 3.15 1.12.35 2.31.53 3.55.53 6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
+      </a>
+    </div>
+    <div class="handle">@platonikaskcom</div>
   </div>
 </footer>
 
