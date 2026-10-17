@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google Analytics 4 — Ölçüm Kimliği -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5HPXHS13DV"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5HPXHS13DV', { content_group: 'web' });
+function track(name, params){ try{ gtag('event', name, params || {}); }catch(e){} }
+</script>
 <title>Platonik Aşk — Söylenmemiş her şeye bir yer</title>
 <meta name="description" content="Platonik aşkını test et, adını koy; ona hiç göndermeyeceğin ya da göndereceğin mektubu, itirafı, sertifikayı oluştur." />
 <link rel="canonical" href="https://platonikask.com/" />
@@ -406,6 +415,7 @@ function go(v){
   views.forEach(x=>document.getElementById(x).classList.toggle('on',x===v));
   document.querySelectorAll('.nav-links button').forEach(b=>b.classList.toggle('active',b.dataset.go===v));
   window.scrollTo({top:0,behavior:'smooth'});
+  track('view_section', { section: v });
 }
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
 
@@ -414,19 +424,21 @@ const SHARE_URL = "https://platonikask.com/";
 const SHARE_TEXT = "Kalbinde kalan o kişi için bir satır. Platonik aşkının adını koy:";
 async function sharePage(){
   if(navigator.share){
-    try{ await navigator.share({title:"Platonik Aşk", text:SHARE_TEXT, url:SHARE_URL}); return; }
+    try{ await navigator.share({title:"Platonik Aşk", text:SHARE_TEXT, url:SHARE_URL}); track('share', { method:'native' }); return; }
     catch(e){ if(e && e.name==='AbortError') return; }
   }
   copyLink();
 }
 function shareWhatsApp(){
+  track('share', { method:'whatsapp' });
   window.open("https://wa.me/?text="+encodeURIComponent(SHARE_TEXT+" "+SHARE_URL),"_blank","noopener");
 }
 function shareX(){
+  track('share', { method:'x' });
   window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(SHARE_TEXT)+"&url="+encodeURIComponent(SHARE_URL),"_blank","noopener");
 }
 function copyLink(){
-  const done=()=>toast('Link kopyalandı ✓');
+  const done=()=>{ toast('Link kopyalandı ✓'); track('share', { method:'copy_link' }); };
   if(navigator.clipboard && window.isSecureContext){
     navigator.clipboard.writeText(SHARE_URL).then(done).catch(fallbackCopy);
   } else { fallbackCopy(); }
@@ -467,6 +479,7 @@ function renderQ(){
     <div class="opts">${item.a.map((o,i)=>`<button class="opt" onclick="answer(${o[1]})">${o[0]}</button>`).join('')}</div>`;
 }
 function answer(pts){
+  if(qi===0) track('quiz_start');
   score+=pts; qi++;
   if(qi<QUESTIONS.length){renderQ();}
   else{showResult();}
@@ -483,8 +496,9 @@ function showResult(){
   document.getElementById('rScore').textContent=`Platonik yoğunluk: %${pct}`;
   document.getElementById('rReportTitle').textContent=`“${arch.name}” için derin analiz`;
   fillReport();
+  track('quiz_complete', { archetype: arch.name, score_pct: pct });
 }
-function restartQuiz(){qi=0;score=0;document.getElementById('resultArea').style.display='none';document.getElementById('quizArea').style.display='block';renderQ();}
+function restartQuiz(){track('quiz_restart');qi=0;score=0;document.getElementById('resultArea').style.display='none';document.getElementById('quizArea').style.display='block';renderQ();}
 renderQ();
 
 /* ---------------- STUDIO ---------------- */
@@ -541,6 +555,7 @@ function doDownload(){
     a.href=canvas.toDataURL('image/png');
     a.click();
     toast('İndirildi ✓');
+    track('card_download', { card_type: mode });
   }).catch(()=>toast('İndirme başarısız oldu'));
 }
 </script>
